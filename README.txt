@@ -1,2 +1,3 @@
-## bongo-bot Installation and Setup
-# Install and run
+bongo-bot Installation and Setup
+
+Install and run
