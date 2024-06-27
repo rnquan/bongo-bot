@@ -124,4 +124,28 @@ async def ping(ctx):
     ping =  round(ping_ * 1000)
     await ctx.send(f"Ping is {ping}ms")
 
+# Give roles
+@bot.command()
+@commands.has_role(ROLENAME)
+async def roles(ctx):
+    message = await ctx.send("testing reactions")
+    await message.add_reaction('\N{THUMBS UP SIGN}')
+    
+
+    # send message in roles channel only
+    # check on new reactions
+    # clear reactions after?
+
+@bot.event
+async def on_raw_reaction_add(payload):
+    if payload.user_id != bot.user.id:
+        channel = bot.get_channel(payload.channel_id)
+        membr = payload.member
+        reaction = payload.emoji
+        msg_id = payload.message_id
+        print(f"member is {membr}, reaction was {reaction}")
+        msg = await channel.fetch_message(msg_id)
+        await msg.remove_reaction(reaction, membr)
+        
+
 bot.run(TOKEN)
