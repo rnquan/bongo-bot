@@ -60,7 +60,7 @@ async def play(ctx, url):
             with YoutubeDL(YDL_OPTIONS) as ydl:
                 info = ydl.extract_info(url, download=False)
             URL = info['url']
-            voice.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
+            voice.play(FFmpegPCMAudio(executable='C:/ffmpeg/bin/ffmpeg.exe', source=URL, **FFMPEG_OPTIONS))
             voice.is_playing()
             await ctx.send('Bot is playing')
 
