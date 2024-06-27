@@ -47,9 +47,7 @@ async def flip(ctx):
 @bot.command(name='play', help='Plays the requested song in the VC of the person who called the command')
 @commands.has_role(ROLENAME)
 async def play(ctx, url):
-    print('received')
     if ctx.author.voice:
-        print('in vc')
         user_channel = ctx.author.voice.channel
         await user_channel.connect()
     
@@ -117,7 +115,7 @@ async def leave(ctx):
 
 
 # Check ping
-@bot.command()
+@bot.command(name='ping', help='Displays the ping')
 @commands.has_role(ROLENAME)
 async def ping(ctx):
     ping_ = bot.latency
