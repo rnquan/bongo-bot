@@ -14,6 +14,7 @@ load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
 GUILD = os.getenv("DISCORD_GUILD")
 ROLENAME = os.getenv("ROLENAME")
+FFMPEG_PATH = os.getenv("FFMPEG_PATH")
 
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents=intents)
@@ -60,7 +61,7 @@ async def play(ctx, url):
             with YoutubeDL(YDL_OPTIONS) as ydl:
                 info = ydl.extract_info(url, download=False)
             URL = info['url']
-            voice.play(FFmpegPCMAudio(executable='C:/ffmpeg/bin/ffmpeg.exe', source=URL, **FFMPEG_OPTIONS))
+            voice.play(FFmpegPCMAudio(executable=FFMPEG_PATH, source=URL, **FFMPEG_OPTIONS))
             voice.is_playing()
             await ctx.send('Bot is playing')
 
